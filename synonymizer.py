@@ -7,7 +7,7 @@ import random as r
 def lookup(words, string):
     synonyms = []
     for word in words:
-        if word[0] == string:
+        if word[0] == string and word[2] != "(noun)":
             synonyms.extend(word[3:-1])
     
     for i in range(len(synonyms)):
@@ -24,7 +24,7 @@ def run():
         words[i] = words[i].split(",")
 
     text = input("Text: ").lower()
-    text = re.sub("[.!?]", "", text)
+    text = re.sub("[,;.!?]", "", text)
     text_words = text.split(" ")
     
     for i in range(len(text_words)):
@@ -35,3 +35,5 @@ def run():
 
     out = " ".join(text_words).lower()
     print(out)
+
+run()
